@@ -1,6 +1,7 @@
 package dev.leo.sableplayerragdoll.api;
 
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Pose;
 
 public class RagdollSession {
     private final LivingEntity target;
@@ -15,6 +16,10 @@ public class RagdollSession {
 
     public void activate() {
         this.active = true;
+        if (this.target != null) {
+            this.target.setPose(Pose.SWIMMING);
+            this.target.setForcedPose(Pose.SWIMMING);
+        }
     }
 
     public boolean isActive() {
