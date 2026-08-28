@@ -11,6 +11,10 @@ repositories {
     maven { url = 'https://maven.neoforged.net/releases' }
 }
 
+base {
+    archivesName = 'Active-Ragdolls'
+}
+
 neoForge {
     version = project.neo_version
 
@@ -33,6 +37,10 @@ neoForge {
             sourceSet(sourceSets.main)
         }
     }
+}
+
+tasks.named('jar', Jar) {
+    archiveFileName = "Active-Ragdolls-${project.minecraft_version}-${project.mod_version}.jar"
 }
 
 tasks.withType(JavaCompile).configureEach {
