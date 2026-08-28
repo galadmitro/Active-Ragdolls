@@ -24,8 +24,8 @@ repositories {
 }
 
 dependencies {
-    // Compile against the base mod without bundling its package into the final output JAR
-    compileOnly name: 'sable_player_ragdoll-1.21.1-0.7.5'
+    // Direct file reference to compile against the base mod JAR without bundling it into your output
+    compileOnly files('libs/sable_player_ragdoll-1.21.1-0.7.5.jar')
 }
 
 tasks.withType(JavaCompile).configureEach {
