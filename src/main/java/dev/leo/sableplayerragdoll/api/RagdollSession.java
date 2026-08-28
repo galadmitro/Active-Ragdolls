@@ -2,6 +2,7 @@ package dev.leo.sableplayerragdoll.api;
 
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.player.Player;
 
 public class RagdollSession {
     private final LivingEntity target;
@@ -18,7 +19,9 @@ public class RagdollSession {
         this.active = true;
         if (this.target != null) {
             this.target.setPose(Pose.SWIMMING);
-            this.target.setForcedPose(Pose.SWIMMING);
+            if (this.target instanceof Player player) {
+                player.setForcedPose(Pose.SWIMMING);
+            }
         }
     }
 
