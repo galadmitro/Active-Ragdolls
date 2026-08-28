@@ -1,22 +1,35 @@
-package dev.leo.activeragdolls.api;
+package dev.leo.sableplayerragdoll.api;
 
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.neoforged.bus.api.Event;
+import net.neoforged.bus.api.ICancellableEvent;
 
-public class RagdollStartEvent extends Event {
-    private final LivingEntity entity;
+public class RagdollStartEvent extends Event implements ICancellableEvent {
+
+    private final Player player;
     private final RagdollLaunchOptions options;
+    private boolean canceled = false;
 
-    public RagdollStartEvent(LivingEntity entity, RagdollLaunchOptions options) {
-        this.entity = entity;
+    public RagdollStartEvent(Player player, RagdollLaunchOptions options) {
+        this.player = player;
         this.options = options;
     }
 
-    public LivingEntity getEntity() {
-        return this.entity;
+    public Player getPlayer() {
+        return player;
     }
 
     public RagdollLaunchOptions getOptions() {
-        return this.options;
+        return options;
+    }
+
+    @Override
+    public boolean isCanceled() {
+        return canceled;
+    }
+
+    @Override
+    public void setCanceled(boolean cancel) {
+        this.canceled = cancel;
     }
 }

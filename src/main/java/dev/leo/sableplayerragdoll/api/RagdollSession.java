@@ -1,39 +1,39 @@
-package dev.leo.activeragdolls.api;
+package dev.leo.sableplayerragdoll.api;
 
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.player.Player;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class RagdollSession {
-    private final LivingEntity target;
+
+    private static final Map<UUID, RagdollSession> ACTIVE_SESSIONS = new HashMap<>();
+
+    private final Player player;
     private final RagdollLaunchOptions options;
-    private boolean active;
 
-    public RagdollSession(LivingEntity target, RagdollLaunchOptions options) {
-        this.target = target;
+    public RagdollSession(Player player, RagdollLaunchOptions options) {
+        this.player = player;
         this.options = options;
-        this.active = false;
     }
 
-    public void activate() {
-        this.active = true;
-        if (this.target != null) {
-            this.target.setPose(Pose.SWIMMING);
-            if (this.target instanceof Player player) {
-                player.setForcedPose(Pose.SWIMMING);
-            }
-        }
+    public void start() {
+        ACTIVE_SESSIONS.put(player.getUUID(), this);
     }
 
-    public boolean isActive() {
-        return this.active;
+    public static void stop(Player player) {
+        ACTIVE_SESSIONS.remove(player.getUUID());
     }
 
-    public LivingEntity getTarget() {
-        return this.target;
+    public static boolean isRagdolled(Player player) {
+        return ACTIVE_SESSIONS.containsKey(player.getUUID());
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 
     public RagdollLaunchOptions getOptions() {
-        return this.options;
+        return options;
     }
 }

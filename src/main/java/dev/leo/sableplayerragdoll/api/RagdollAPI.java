@@ -1,21 +1,17 @@
-package dev.leo.activeragdolls.api;
+package dev.leo.sableplayerragdoll.api;
 
-import net.minecraft.world.entity.LivingEntity;
-import java.util.Map;
-import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
+import net.minecraft.world.entity.player.Player;
 
 public class RagdollAPI {
-    private static final Map<UUID, RagdollSession> SESSIONS = new ConcurrentHashMap<>();
 
-    public static RagdollSession startRagdoll(LivingEntity entity, RagdollLaunchOptions options) {
-        RagdollSession session = SESSIONS.computeIfAbsent(entity.getUUID(), id -> new RagdollSession(entity, options));
-        session.activate();
-        return session;
+    public static void startRagdoll(Player player, RagdollLaunchOptions options) {
+        // Triggers the active ragdoll state for the target player
+        RagdollSession session = new RagdollSession(player, options);
+        session.start();
     }
 
-    public static boolean isRagdolled(LivingEntity entity) {
-        RagdollSession session = SESSIONS.get(entity.getUUID());
-        return session != null && session.isActive();
+    public static void stopRagdoll(Player player) {
+        // Stops active ragdoll state and restores vanilla player controller
+        RagdollSession.stop(player);
     }
 }
