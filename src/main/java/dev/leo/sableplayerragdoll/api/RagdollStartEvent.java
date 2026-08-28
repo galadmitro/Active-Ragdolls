@@ -1,4 +1,4 @@
-package dev.leo.sableplayerragdoll.api;
+package dev.leo.activeragdolls.api;
 
 import net.minecraft.world.entity.LivingEntity;
 import net.neoforged.bus.api.Event;

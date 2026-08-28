@@ -1,4 +1,4 @@
-package dev.leo.sableplayerragdoll;
+package dev.leo.activeragdolls;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.SynchedEntityData;

@@ -1,4 +1,4 @@
-package dev.leo.sableplayerragdoll;
+package dev.leo.activeragdolls;
 
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;

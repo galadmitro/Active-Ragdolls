@@ -1,4 +1,4 @@
-package dev.leo.sableplayerragdoll.mob;
+package dev.leo.activeragdolls.mob;
 
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HierarchicalModel;
