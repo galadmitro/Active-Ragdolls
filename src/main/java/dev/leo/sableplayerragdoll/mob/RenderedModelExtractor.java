@@ -1,6 +1,7 @@
 package dev.leo.sableplayerragdoll.mob;
 
 import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.world.entity.Entity;
 import java.util.HashMap;
@@ -15,9 +16,11 @@ public class RenderedModelExtractor {
         }
 
         Map<String, ModelPart> partsMap = new HashMap<>();
-        model.root().getAllParts().forEach(part -> {
-            partsMap.put(part.toString(), part);
-        });
+        
+        if (model instanceof HierarchicalModel<?> hierarchicalModel) {
+            ModelPart rootPart = hierarchicalModel.root();
+            rootPart.getAllParts().forEach(part -> partsMap.put(part.toString(), part));
+        }
 
         MODEL_CACHE.put(entity, partsMap);
     }
