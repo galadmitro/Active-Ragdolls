@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'net.neoforged.moddev' version '2.0.78' // or your current moddev plugin version
+    id 'net.neoforged.moddev' version '2.0.78'
 }
 
 group = 'dev.leo'
@@ -16,15 +16,32 @@ java {
     }
 }
 
-repositories {
-    mavenCentral()
-    flatDir {
-        dirs 'libs'
+// Configures NeoForge and Minecraft mapped dependencies for compileJava
+neoForge {
+    version = '21.1.65' // Adjust to match your target NeoForge version
+
+    runs {
+        client {
+            client()
+        }
+        server {
+            server()
+        }
+    }
+
+    mods {
+        activeragdolls {
+            sourceSet sourceSets.main
+        }
     }
 }
 
+repositories {
+    mavenCentral()
+}
+
 dependencies {
-    // Direct file reference to compile against the base mod JAR without bundling it into your output
+    // Links your local base mod JAR without bundling its package into the compiled output
     compileOnly files('libs/sable_player_ragdoll-1.21.1-0.7.5.jar')
 }
 
