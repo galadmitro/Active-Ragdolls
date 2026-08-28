@@ -1,10 +1,24 @@
 modLoader="javafml"
-loaderVersion="[4,)"
+loaderVersion="[1,)"
 license="MIT"
 
 [[mods]]
 modId="activeragdolls"
-version="1.21.1-0.7.5"
-displayName="Active Ragdolls Addon"
-authors="Leo"
-description="Active player and mob ragdoll physics addon mod."
+version="${file.jarVersion}"
+displayName="Active Ragdolls"
+description="An active ragdoll physics addon for Sable: Player Ragdolls."
+
+# Require sable_player_ragdoll as a mandatory base mod dependency
+[[dependencies.activeragdolls]]
+    modId="sable_player_ragdoll"
+    type="required"
+    versionRange="[0.7.5,)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.activeragdolls]]
+    modId="neoforge"
+    type="required"
+    versionRange="[21.1.0,)"
+    ordering="NONE"
+    side="BOTH"
