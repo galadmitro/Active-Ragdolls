@@ -1,10 +1,10 @@
 modLoader="javafml"
 loaderVersion="[4,)"
-license="All Rights Reserved"
+license="MIT"
 
 [[mods]]
 modId="sableplayerragdoll"
 version="1.21.1-0.7.5"
-displayName="Sable Player Ragdoll"
+displayName="Active Ragdolls"
 authors="Leo"
-description="Player and mob physics ragdoll mod for NeoForge 1.21.1."
+description="Active player and mob ragdoll physics mod."

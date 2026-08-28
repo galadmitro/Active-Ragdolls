@@ -1,31 +1,25 @@
-package com.example.examplemod;
+package dev.leo.sableplayerragdoll;
 
-import net.minecraft.client.Minecraft;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.neoforge.client.gui.ConfigurationScreen;
-import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.Level;
 
-// This class will not load on dedicated servers. Accessing client side code from here is safe.
-@Mod(value = ExampleMod.MODID, dist = Dist.CLIENT)
-// You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
-@EventBusSubscriber(modid = ExampleMod.MODID, value = Dist.CLIENT)
-public class ExampleModClient {
-    public ExampleModClient(ModContainer container) {
-        // Allows NeoForge to create a config screen for this mod's configs.
-        // The config screen is accessed by going to the Mods screen > clicking on your mod > clicking on config.
-        // Do not forget to add translations for your config options to the en_us.json file.
-        container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
+public class RagdollSeatEntity extends Entity {
+    public RagdollSeatEntity(EntityType<?> type, Level level) {
+        super(type, level);
     }
 
-    @SubscribeEvent
-    static void onClientSetup(FMLClientSetupEvent event) {
-        // Some client setup code
-        ExampleMod.LOGGER.info("HELLO FROM CLIENT SETUP");
-        ExampleMod.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+    @Override
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+    }
+
+    @Override
+    protected void readAdditionalSaveData(CompoundTag tag) {
+    }
+
+    @Override
+    protected void addAdditionalSaveData(CompoundTag tag) {
     }
 }
